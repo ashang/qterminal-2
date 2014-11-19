@@ -57,8 +57,6 @@ class Properties
         bool bookmarksVisible;
         QString bookmarksFile;
 
-        int terminalsPreset;
-
         QKeySequence dropShortCut;
         bool dropKeepOpen;
         bool dropShowOnStart;

@@ -1,3 +1,10 @@
+qterminal (0.6.0-2) unstable; urgency=medium
+
+  * settings window rework
+  * translations 
+
+ -- Alf Gaida <agaida@siduction.org>  Wed, 19 Nov 2014 22:50:24 +0100
+
 qterminal (0.6.0-1) unstable; urgency=low
 
   * Initial release (Closes: #741173)

@@ -24,9 +24,6 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
     QStringList colorSchemes = QTermWidget::availableColorSchemes();
 
     listWidget->setCurrentRow(0);
-#if QT_VERSION > 0x050200
-    listWidget->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContentsOnFirstShow);
-#endif
 
     colorSchemaCombo->addItems(colorSchemes);
     int csix = colorSchemaCombo->findText(Properties::Instance()->colorScheme);
@@ -42,13 +39,13 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
 
     /* scrollbar position */
     QStringList scrollBarPosList;
-    scrollBarPosList << tr("No scrollbar") << tr("Left") << tr("Right");
+    scrollBarPosList << "No scrollbar" << "Left" << "Right";
     scrollBarPos_comboBox->addItems(scrollBarPosList);
     scrollBarPos_comboBox->setCurrentIndex(Properties::Instance()->scrollBarPos);
 
     /* tabs position */
     QStringList tabsPosList;
-    tabsPosList << tr("Top") << tr("Bottom") << tr("Left") << tr("Right");
+    tabsPosList << "Top" << "Bottom" << "Left" << "Right";
     tabsPos_comboBox->addItems(tabsPosList);
     tabsPos_comboBox->setCurrentIndex(Properties::Instance()->tabsPos);
 
@@ -60,7 +57,7 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
     /* actions by motion after paste */
     
     QStringList motionAfter;
-    motionAfter << tr("No move") << tr("Move start") << tr("Move end");
+    motionAfter << "No move" << "Move start" << "Move end";
     motionAfterPasting_comboBox->addItems(motionAfter);
     motionAfterPasting_comboBox->setCurrentIndex(Properties::Instance()->m_motionAfterPaste);
     
@@ -100,8 +97,6 @@ PropertiesDialog::PropertiesDialog(QWidget *parent)
     openBookmarksFile(Properties::Instance()->bookmarksFile);
     connect(bookmarksButton, SIGNAL(clicked()),
             this, SLOT(bookmarksButton_clicked()));
-
-    terminalPresetComboBox->setCurrentIndex(Properties::Instance()->terminalsPreset);
 }
 
 
@@ -158,8 +153,6 @@ void PropertiesDialog::apply()
     Properties::Instance()->useBookmarks = useBookmarksCheckBox->isChecked();
     Properties::Instance()->bookmarksFile = bookmarksLineEdit->text();
     saveBookmarksFile(Properties::Instance()->bookmarksFile);
-
-    Properties::Instance()->terminalsPreset = terminalPresetComboBox->currentIndex();
 
     emit propertiesChanged();
 }
